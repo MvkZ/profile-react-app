@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import ProfileDataService from "../services/profile.service";
 import { withRouter } from '../common/with-router';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Grid from "@mui/material/Grid";
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 
 class Profile extends Component {
   constructor(props) {
@@ -166,108 +172,137 @@ class Profile extends Component {
     const { currentProfile } = this.state;
 
     return (
+      
       <div>
+        <Grid container columns={{ md: 8 }}>
+        <Grid item xs={5}>
+        <Grid container direction={'row'} spacing={24}>
+        <Grid item  xs={8}>
+        <Box sx={{ width: '100%', maxWidth: 500 }}>
+          <Typography variant="h3" gutterBottom>
+            Good Morning, {this.state.currentProfile.displayName}
+          </Typography>
+          <Typography variant="h5" gutterBottom>
+            January 15, 2023
+          </Typography>
+        </Box>
+          </Grid>
+          <Grid item xs={12}>
         {currentProfile ? (
-          <div className="edit-form">
-            <h4>Profile</h4>
-            <form>
-              <div className="form-group">
-                <label htmlFor="firstName">First Name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="firstName"
-                  value={currentProfile.firstName}
-                  onChange={this.onChangeFirstName}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="lastName">Last Name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="lastName"
-                  value={currentProfile.lastName}
-                  onChange={this.onChangeLastName}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="displayName">Display Name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="displayName"
-                  value={currentProfile.displayName}
-                  onChange={this.onChangeDisplayName}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="email"
-                  value={currentProfile.email}
-                  onChange={this.onChangeEmail}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="phoneNumberWork">Phone Number (Work)</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="phoneNumberWork"
-                  value={currentProfile.phoneNumberWork}
-                  onChange={this.onChangeWorkNumber}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="phoneNumberHome">Phone Number (Home)</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="phoneNumberHome"
-                  value={currentProfile.phoneNumberHome}
-                  onChange={this.onChangeHomeNumber}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="location">Location</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="location"
-                  value={currentProfile.location}
-                  onChange={this.onChangeLocation}
-                />
-              </div>
+          <Box
+          component="form"
+          sx={{
+            '& .MuiTextField-root': { m: 1, width: '50ch' },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <Typography variant="h5" gutterBottom>
+            My Profile
+          </Typography>
+          <div>
+            <TextField
+              id="outlined-helperText"
+              label="First Name"
+              value={currentProfile.firstName}
+              onChange={this.onChangeFirstName}
+            />
 
-            </form>
+            <TextField
+              id="outlined-helperText"
+              label="Last Name"
+              value={currentProfile.lastName}
+              onChange={this.onChangeLastName}
+            />
 
+            <TextField
+              id="outlined-helperText"
+              label="Display Name"
+              value={currentProfile.displayName}
+              onChange={this.onChangeDisplayName}
+            />
+
+            <TextField
+              id="outlined-helperText"
+              label="Email"
+              value={currentProfile.email}
+              onChange={this.onChangeEmail}
+            />
+
+            <TextField
+              id="outlined-helperText"
+              label="Phone Number (Work)"
+              value={currentProfile.phoneNumberWork}
+              onChange={this.onChangeWorkNumber}
+            />
+
+            <TextField
+              id="outlined-helperText"
+              label="Phone Number (Home)"
+              value={currentProfile.phoneNumberHome}
+              onChange={this.onChangeHomeNumber}
+            />
+
+            <TextField
+              id="outlined-helperText"
+              label="Location"
+              value={currentProfile.location}
+              onChange={this.onChangeLocation}
+            />
            
-            <button
-              type="submit"
-              className="badge badge-success"
-              onClick={this.updateProfile}
-            >
-              Update
-            </button>
-            <p>{this.state.message}</p>
-            <button
-              type="submit"
-              className="badge badge-success"
-              onClick={this.onClear}
-            >
-              Reset
-            </button>
           </div>
+        </Box>
+            
         ) : (
           <div>
             <br />
             <p>Please Login...</p>
           </div>
         )}
+        </Grid>
+        <Grid item  xs={5}>
+
+        <Stack spacing={5} direction="row">
+              <Button style={{ textTransform: "none", borderRadius: 35, backgroundColor: "red", padding: "14px 0px" , fontSize: "18px"}}  fullWidth variant="outlined" onClick={this.updateProfile}>
+                Update
+              </Button>
+              
+              <Button style={{ textTransform: "none", borderRadius: 35, backgroundColor: "red", padding: "14px 0px", fontSize: "18px"}}  fullWidth variant="outlined" onClick={this.onClear}>
+                Reset</Button>
+          </Stack>
+          <p>{this.state.message}</p>
+        </Grid>
+        </Grid>
+        </Grid>
+
+        <Grid item xs={3} >
+        <Grid container direction={'row'} spacing={24}>
+        <Grid item  xs={8}>
+        </Grid>
+        <Grid item xs={12}>
+          <center>
+        <Box
+            component="img"
+            sx={{
+              height: 320,
+              width: 320,
+            }}
+            alt="User"
+            src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
+          />
+          <Typography variant="h6" gutterBottom>
+            {currentProfile.firstName} {currentProfile.lastName}
+          </Typography>
+          <Typography variant="h6" gutterBottom>
+            {currentProfile.email}
+          </Typography>
+          </center>
+        </Grid>
+        </Grid>
+        </Grid>
+        </Grid>
       </div>
+      
     );
   }
 }
