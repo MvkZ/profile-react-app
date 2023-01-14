@@ -31,7 +31,7 @@ npm start
 
 > make sure the spring api project is also running along this.
 
-You can visit the following (http://localhost:8081/)[http://localhost:8081/]
+You can visit the following [http://localhost:8081/](http://localhost:8081/)
 
 ### Screenshots
 
